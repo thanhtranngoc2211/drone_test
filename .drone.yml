@@ -5,11 +5,8 @@ name: build golang
 steps:
   - name: code-analysis
     image: sonarsource/sonar-scanner-cli
-    environment: 
-      - SONAR_HOST_URL=http://192.168.21.9:9000
-      - SONAR_SCANNER_OPTS=-Dsonar.projectKey=drone_test_1
-      - SONAR_LOGIN=sqp_090406d4ffdf6c81c1dde59e0a371ef6c34cec6e
-    volumes:
-      - home/thanhtn23/WorkSpace/drone_test/greetings:/usr/src
     commands:
+      - export SONAR_HOST_URL=http://192.168.21.9:9000
+      - export SONAR_SCANNER_OPTS=-Dsonar.projectKey=drone_test_1
+      - export SONAR_LOGIN=sqp_090406d4ffdf6c81c1dde59e0a371ef6c34cec6e
       - sonar-scanner
