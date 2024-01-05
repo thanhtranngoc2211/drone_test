@@ -1,4 +1,3 @@
-// greetings.go
 package greetings
 
 import "fmt"
