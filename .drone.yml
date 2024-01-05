@@ -9,3 +9,11 @@ steps:
       - cd ./greetings
       - go build
       - go test
+
+  - name: code-analysis
+    image: aosapps/drone-sonar-plugin
+    settings:
+      sonar_host: 
+        from_secret: SONAR_HOST
+      sonar_token: 
+        from_secret: SONAR_TOKEN
