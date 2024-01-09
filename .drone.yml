@@ -13,7 +13,4 @@ steps:
       SONAR_TOKEN:
         from_secret: SONAR_TOKEN
     commands:
-      - export SONAR_HOST_URL=http://192.168.21.9:9000
-      - export SONAR_SCANNER_OPTS=-Dsonar.projectKey=drone_test_1
-      - export SONAR_TOKEN=sqp_090406d4ffdf6c81c1dde59e0a371ef6c34cec6e
       - sonar-scanner
