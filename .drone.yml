@@ -14,3 +14,24 @@ steps:
         from_secret: SONAR_TOKEN
     commands:
       - sonar-scanner
+
+  - name: build-and-push
+    image: gcr.io/kaniko-project/executor:debug
+    environment:
+      CI_REGISTRY: 
+        from_secret: CI_REGISTRY
+      CI_REGISTRY_TOKEN:
+       from_secret: CI_REGISTRY_TOKEN
+    commands:
+      - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s" "${CI_REGISTRY_TOKEN}" | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+      - /kaniko/executor --context "/drone/src" --dockerfile "/drone/src/Dockerfile" --destination "thanhtn23/react-test:${DRONE_TAG}" 
+
+  # - name: deploy to kubernetes
+    # image: bitnami/kubectl
+    # commands:
+      # - set image deployment/my-deployment mycontainer=myimage:latest
+
+
+  
+  # - name: notify google chat
+  #   image: josmo/drone-google-chat
