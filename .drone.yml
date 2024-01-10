@@ -25,6 +25,7 @@ steps:
     commands:
       # - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s" "${CI_REGISTRY_TOKEN}" | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
       - echo "{\"auths\":{\"https://index.docker.io/v2/\":{\"auth\":\"$(printf "%s" "dGhhbmh0bjIzOnR1ZG9udDEyMw==" | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+      - cat /kaniko/.docker/config.json
       - /kaniko/executor --context "/drone/src" --dockerfile "/drone/src/Dockerfile" --destination "thanhtn23/kaniko-test:${DRONE_TAG}" 
 
   # - name: deploy to kubernetes
