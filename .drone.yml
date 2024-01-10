@@ -28,7 +28,7 @@ steps:
       - /kaniko/executor --context "/drone/src" --dockerfile "/drone/src/Dockerfile" --destination "thanhtn23/react-test:${DRONE_TAG}" 
 
   # - name: deploy to kubernetes
-    # image: bitnami/kubectl
+  #   image: bitnami/kubectl
     # commands:
       # - set image deployment/my-deployment mycontainer=myimage:latest
 
