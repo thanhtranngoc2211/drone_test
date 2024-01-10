@@ -30,7 +30,7 @@ steps:
 
   # - name: deploy to kubernetes
   #   image: bitnami/kubectl
-    # commands:
+  #   commands:
       # - set image deployment/my-deployment mycontainer=myimage:latest
 
 
