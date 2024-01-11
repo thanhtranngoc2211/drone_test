@@ -1,9 +1,9 @@
 FROM python:3-slim
 
-ENV BUILD_NUMBER=0
-ENV COMMIT='unknown commit'
-ENV PROJECT='unknown project'
-ENV AUTHOR_EMAIL='octocat@github.com'
+ENV DRONE_BUILD_NUMBER=0
+ENV DRONE_COMMIT='unknown commit'
+ENV DRONE_REPO='unknown project'
+ENV DRONE_COMMIT_AUTHOR_EMAIL='octocat@github.com'
 
 WORKDIR /code
 
