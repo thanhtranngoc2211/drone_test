@@ -22,18 +22,23 @@ steps:
         from_secret: CI_REGISTRY
       CI_REGISTRY_TOKEN:
        from_secret: CI_REGISTRY_TOKEN
+      DRONE_BRANCH : DRONE_BRANCH
+      DRONE_COMMIT_SHA: DRONE_COMMIT_SHA
     commands:
       # - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s" "${CI_REGISTRY_TOKEN}" | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
       - echo "{\"auths\":{\"https://index.docker.io/v1/\":{\"auth\":\"$(printf "%s" "dGhhbmh0bjIzOnR1ZG9udDEyMw==" | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
-      - cat /kaniko/.docker/config.json
-      - /kaniko/executor --context "/drone/src" --dockerfile "/drone/src/Dockerfile" --destination "thanhtn23/kaniko-test:latest" --cache=true
+      - /kaniko/executor --context "/drone/src" --dockerfile "/drone/src/Dockerfile" --destination "thanhtn23/kaniko-test:${DRONE_BRANCH//\//-}-${DRONE_COMMIT_SHA:0:8}" --cache=true
 
   # - name: deploy to kubernetes
   #   image: bitnami/kubectl
   #   commands:
       # - set image deployment/my-deployment mycontainer=myimage:latest
-
-
   
-  # - name: notify google chat
-  #   image: josmo/drone-google-chat
+  - name: notify-google-chat
+    image: thanhtn23/chat-push-notify:1.0
+    environment:
+      BUILD_NUMBER: DRONE_BUILD_NUMBER
+      COMMIT: DRONE_COMMIT
+      PROJECT: DRONE_REPO
+      AUTHOR_EMAIL: DRONE_COMMIT_AUTHOR_EMAIL
+      
