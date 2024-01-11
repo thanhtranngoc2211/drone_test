@@ -5,7 +5,7 @@ import os
 build_number = os.getenv('BUILD_NUMBER')
 commit = os.getenv('COMMIT')
 project = os.getenv('PROJECT')
-author = os.getenv('AUTHOR')
+author = os.getenv('AUTHOR_EMAIL')
 
 def main():
     """Google Chat incoming webhook quickstart."""

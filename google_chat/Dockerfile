@@ -13,4 +13,5 @@ RUN pip install -r requirement.txt
 
 COPY webhook.py .
 
-CMD ["python", "webhook.py"]
+ENTRYPOINT ["python"]
+CMD ["webhook.py"]

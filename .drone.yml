@@ -35,10 +35,12 @@ steps:
       # - set image deployment/my-deployment mycontainer=myimage:latest
   
   - name: notify-google-chat
-    image: thanhtn23/chat-push-notify:1.0
+    image: thanhtn23/chat-push-notify:1.2
     environment:
       BUILD_NUMBER: DRONE_BUILD_NUMBER
       COMMIT: DRONE_COMMIT
       PROJECT: DRONE_REPO
       AUTHOR_EMAIL: DRONE_COMMIT_AUTHOR_EMAIL
+    commands:
+      - python /drone/src/google_chat/webhook.py
       
